@@ -1,38 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import CountryCard from './CountryCard';
 import './App.css';
 
 const App = () => {
-    const [countries, setCountries] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [countries, setCountries] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-    useEffect(() => {
-        axios.get('https://restcountries.com/v3.1/all')
-            .then(response => setCountries(response.data))
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
+  useEffect(() => {
+    // Make sure to match the URL that Cypress intercepts
+    fetch('https://restcountries.com/v3.1/all')
+      .then((res) => res.json())
+      .then((data) => setCountries(data))
+      .catch((error) => {
+        console.error('API fetch error:', error);
+      });
+  }, []);
 
-    const filteredCountries = countries.filter(country =>
-        country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const filteredCountries = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    return (
-        <div>
-            <input
-                type="text"
-                id="searchBar"
-                placeholder="Search for countries..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div id="countriesContainer">
-                {filteredCountries.map(country => (
-                    <CountryCard key={country.cca3} country={country} />
-                ))}
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Country Search</h1>
+      <input
+        type="text"
+        placeholder="Search countries"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+
+      <div id="countriesContainer">
+        {filteredCountries.map((country, index) => (
+          <CountryCard key={index} country={country} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default App;

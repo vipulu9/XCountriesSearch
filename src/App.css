@@ -1,6 +1,7 @@
+/* Base styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
   margin: 0;
   padding: 20px;
   display: flex;
@@ -8,53 +9,66 @@ body {
   align-items: center;
 }
 
+/* Search bar styling */
 #searchBar {
-  display: flex; 
-  justify-content: flex-end;
   width: 80%;
-  padding: 10px;
-  margin-bottom: 20px;
+  max-width: 600px;
+  padding: 12px 16px;
+  margin-bottom: 30px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 #searchBar:focus {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #0077ff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
   outline: none;
 }
 
+/* Container for countries */
 #countriesContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
+/* Card styling */
 .countryCard {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 150px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
-  padding: 10px;
+  padding: 12px;
+  cursor: pointer;
 }
 
 .countryCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* Flag image */
 .countryCard img {
   width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 
+/* Country name text */
 .countryCard p {
-  margin: 10px 0 0;
-  font-weight: bold;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  word-wrap: break-word;
 }
