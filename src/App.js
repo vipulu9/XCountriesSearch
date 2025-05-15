@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
     // Make sure to match the URL that Cypress intercepts
-    fetch('https://restcountries.com/v3.1/all')
+    fetch('https://countries-search-data-prod-812920491762.asia-south1.run.app/countries')
       .then((res) => res.json())
       .then((data) => setCountries(data))
       .catch((error) => {
@@ -17,7 +17,7 @@ const App = () => {
   }, []);
 
   const filteredCountries = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
+    country.common.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
